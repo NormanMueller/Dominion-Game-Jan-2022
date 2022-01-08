@@ -76,7 +76,7 @@ karten_dict = {
 "herzogentum" : {
    "name": "herzogentum",
     "type": "Punktekarte",
-    "kosten" : 3,
+    "kosten" : 5,
     "extra_money" : 0,
     "zusatz_aktionen" : 0,
     "zusatz_kaufe" : 0,
@@ -88,7 +88,7 @@ karten_dict = {
 "provinz" : {
    "name": "provinz",
     "type": "Punktekarte",
-    "kosten" : 3,
+    "kosten" : 8,
     "extra_money" : 0,
     "zusatz_aktionen" : 0,
     "zusatz_kaufe" : 0,

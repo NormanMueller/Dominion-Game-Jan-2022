@@ -6,3 +6,7 @@ class spielfeld():
         
         self.spielfeld_attr = karten.karten
         self.spielfeld_namen= karten.karten_definieren
+
+
+
+

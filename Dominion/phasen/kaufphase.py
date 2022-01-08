@@ -25,35 +25,45 @@ class kauf_phase():
     def available_money_for_buy (self, money_list): 
         money = sum(money_list)
         return money
+    
+    def get_card_price(self, auswahl_karte):
+            card_cost = self.karten_dict.get(auswahl_karte).get('kosten')
+            return card_cost
 
-    def get_card_price(self, card):
-        card_cost = self.karten_dict.get(card).get('kosten')
-        return card_cost
+    def evaluate_buy_process(self, available_money, auswahl_karte, number_buys ):
+        
+        def check_correct_user_input (self ,auswahl_karte) :
+            if auswahl_karte in self.spielfeld.keys():
+                return  True
+            else:  
+                return False
 
-    def evaluate_buy_process(self, money, card_cost, number_buys ):
-        if money >= card_cost and number_buys >= 1:
-            return True
-        else:
-            return False
+        def valid_money_and_buys(self, auswahl_karte):
+            if available_money >= self.get_card_price( auswahl_karte) and number_buys >= 1:
+                return True 
+        if check_correct_user_input(self, auswahl_karte) == True :
+            if valid_money_and_buys(self, auswahl_karte) == True :
+                return True
+
     
     def buy_phase_infos (self, money):
-        return f'  Geld : {money}'  
+        return f'  Geld : {money} , number buys : {self.spieler.number_buys}'  
 
     def start_buying_phase(self):
         
         while self.spieler.number_buys >= 1 :
             
             self.spieler.money_counting()
-            money = self.available_money_for_buy(self.spieler.geld)
-            print(self.buy_phase_infos(money))
+            available_money = self.available_money_for_buy(self.spieler.geld)
+            print(self.buy_phase_infos(available_money))
             auswahl_karte =input("welche Karte willst du kaufen ?")    
-            card_cost = self.get_card_price(auswahl_karte)
-           
-            if  self.evaluate_buy_process(money, card_cost ,self.spieler.number_buys) == True:
+            
+            if  self.evaluate_buy_process(available_money, auswahl_karte ,self.spieler.number_buys) == True:
+                card_cost = self.get_card_price(auswahl_karte)
                 self.buy_card_from_stock(auswahl_karte) 
                 self.update_spielfeld(auswahl_karte)
                 self.spieler.number_buys += -1
-                money = money - card_cost
+                available_money = available_money - card_cost
             else :
                 print('Kauf nicht möglich geld oder aktionen fehlen')
 

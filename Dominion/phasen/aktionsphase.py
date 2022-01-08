@@ -16,14 +16,6 @@ class action_phase():
       card_type = self.karten_dict.get(card_type).get('type')
       return card_type
 
-    def playable_action_cards(self, hand_cards): 
-        
-        aktion_cards= 0
-        for hand_card in hand_cards:
-            if self.get_card_type(hand_card) == 'action_card':
-                aktion_cards += 1
-        return aktion_cards
-
     def permitted_action_card (self, choose_card ,hand_cards) :
         if choose_card in hand_cards:
             return True
@@ -53,20 +45,38 @@ class action_phase():
     def remove_played_card_from_hand(self, choose_card):
         self.spieler.hand_cards.remove(choose_card)
     
+    def stop_action_phase(self):
+        
+        def playable_action_cards(self, hand_cards): 
+            aktion_cards= 0
+            for hand_card in hand_cards:
+                if self.get_card_type(hand_card) == 'action_card':
+                    aktion_cards += 1
+            return aktion_cards
+
+        if self.spieler.number_actions < 1 or playable_action_cards(self, self.spieler.hand_cards) <= 0:
+            return True
+        else :
+            return False
+
     def start_aktionsphase(self):
        
-        while self.spieler.number_actions >= 1 :
+        while True:
+            
             print(self.action_phase_infos())
-            choose_card = input('Welche Karte möchtest du spielen? /ansonsten tippe nein') 
-            if self.permitted_action_card(choose_card, self.spieler.hand_cards) ==True:
-                self.get_effects_from_action_card(choose_card)
-                self.remove_played_card_from_hand(choose_card)
-                self.add_to_played_action_card_pile(choose_card)
-                self.reduce_remaining_actions()
-            elif choose_card == '':
+            
+            if self.stop_action_phase() == False:
+                choose_card = input('Welche Karte möchtest du spielen? /ansonsten tippe nein') 
+                if self.permitted_action_card(choose_card, self.spieler.hand_cards) ==True:
+                    self.get_effects_from_action_card(choose_card)
+                    self.remove_played_card_from_hand(choose_card)
+                    self.add_to_played_action_card_pile(choose_card)
+                    self.reduce_remaining_actions()
+                elif choose_card == '':
+                    break
+                elif choose_card not in self.spieler.hand_cards:
+                    print('Feler wähle bitte eine neue Karte')
+
+            else:
                 break
-            elif choose_card not in self.spieler.hand_cards:
-                print('Feler wähle bitte eine neue Karte')
-            print(self.action_phase_infos())
-            if self.playable_action_cards(self.spieler.hand_cards) <= 0 :
-                break
+         
