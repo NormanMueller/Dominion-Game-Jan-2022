@@ -41,6 +41,7 @@ class kauf_phase():
         def valid_money_and_buys(self, auswahl_karte):
             if available_money >= self.get_card_price( auswahl_karte) and number_buys >= 1:
                 return True 
+        
         if check_correct_user_input(self, auswahl_karte) == True :
             if valid_money_and_buys(self, auswahl_karte) == True :
                 return True
