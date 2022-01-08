@@ -81,7 +81,7 @@ class spieler():
     def get_card_type (self, card_type ): 
       card_type = self.karten_dict.get(card_type).get('type')
       return card_type
-
+#
     def evaluate_money (self, card ):
       hand_money= self.karten_dict.get(card).get('extra_money')
       self.geld.append(hand_money)
