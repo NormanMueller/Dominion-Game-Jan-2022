@@ -60,11 +60,10 @@ class kauf_phase():
             auswahl_karte =input("welche Karte willst du kaufen ?")    
             
             if  self.evaluate_buy_process(available_money, auswahl_karte ,self.spieler.number_buys) == True:
-                card_cost = self.get_card_price(auswahl_karte)
                 self.buy_card_from_stock(auswahl_karte) 
                 self.update_spielfeld(auswahl_karte)
                 self.spieler.number_buys += -1
-                available_money = available_money - card_cost
+                available_money = available_money - self.get_card_price(auswahl_karte)
             else :
                 print('Kauf nicht möglich geld oder aktionen fehlen')
 
