@@ -38,7 +38,11 @@ class Spiel():
         while game_ends_provinz_empty(self) == False and game_ends_three_piles_empty(self) == False :
 
             for spieler in [self.spieler, self.spieler_2]:
-                spielzug(  spieler, self.spielfeld , self.karten_dict).start_spielzug()
+                if spieler == self.spieler:
+                    no_turn_player = self.spieler_2
+                else :
+                    no_turn_player = self.spieler
+                spielzug(  spieler, no_turn_player, self.spielfeld , self.karten_dict).start_spielzug()
                 player_points = spieler.get_victory_points_player( spieler.card_deck)
                 card_count = spieler.count_card_deck( spieler.card_deck)
                 print(f'deine Punkte {player_points},  {card_count}')

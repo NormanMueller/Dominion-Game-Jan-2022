@@ -22,18 +22,21 @@ class spieler():
     self.geld = []
     self.name = name
     self.phase_zug = ''
-
+    self.turn_counter = 0
   
   def shuffle_discard_pile(self, cards):
     cards = [[card] for card in cards]
     shuffle(cards)
     return cards
 
+
   def reset_draw_pile_to_empty(self):
     self.draw_pile = []
   
+
   def reset_discard_pile_to_empty(self):
     self.discard_pile = []
+
 
   def update_draw_pile(self ):
     
@@ -49,11 +52,13 @@ class spieler():
       self.draw_pile.extend(i)
     self.reset_discard_pile_to_empty()
 
+
   def initialize_draw_pile_generator(self):
     self.update_draw_pile( )
     for i in [[i] for i in self.draw_pile] :
         yield i
   
+
   def filter_none_type_cards (self, hand_cards): 
     hand_cards = [i for i in hand_cards if i is not None]
     return hand_cards
@@ -81,7 +86,7 @@ class spieler():
     def get_card_type (self, card_type ): 
       card_type = self.karten_dict.get(card_type).get('type')
       return card_type
-##
+
     def evaluate_money (self, card ):
       hand_money= self.karten_dict.get(card).get('extra_money')
       self.geld.append(hand_money)
@@ -106,11 +111,14 @@ class spieler():
             card_count = collections.Counter(card_deck)
             return card_count  
 
+
   def append_card_to_card_deck (self, new_karte):
     self.card_deck.append(new_karte)
 
+
   def append_card_to_discard_pile (self, new_karte):
     self.discard_pile.append(new_karte)
+
 
   def get_victory_points_player(self, card_deck):
             

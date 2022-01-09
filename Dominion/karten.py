@@ -9,7 +9,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :0,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10
 },
 "silber" : {
@@ -21,7 +22,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :0,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10
 }
 ,
@@ -34,7 +36,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :0,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10}
 ,
 "schmiede" : {
@@ -46,7 +49,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 3,
     "siegpunkte" :0,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10}
 ,
 "dorf" : {
@@ -58,7 +62,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 1,
     "siegpunkte" :0,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10}
 ,
 "anwesen" : {
@@ -70,7 +75,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :1,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10}
 ,
 "herzogentum" : {
@@ -82,7 +88,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :3,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 10}
 ,
 "provinz" : {
@@ -94,7 +101,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :6,
-    "effekt" :0,
+    "discard_effect" :0,
+    "curse_effect": 0,
     "anzahl": 1}
     ,
 "miliz" : {
@@ -106,7 +114,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :0,
-    "effekt" : 1,
+    "discard_effect" : 2,
+    "curse_effect": 0,
     "anzahl": 10}
             ,
 "markt" : {
@@ -118,7 +127,8 @@ karten_dict = {
     "zusatz_kaufe" : 1,
     "zusatz_karten": 1,
     "siegpunkte" :0,
-    "effekt" : 0,
+    "discard_effect" : 0,
+    "curse_effect": 0,
     "anzahl": 10}
         ,
 "hexe" : {
@@ -130,7 +140,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 2,
     "siegpunkte" :0,
-    "effekt" : 1,
+    "discard_effect" : 0,
+    "curse_effect": 1,
     "anzahl": 10}
             ,
 "fluch" : {
@@ -142,7 +153,8 @@ karten_dict = {
     "zusatz_kaufe" : 0,
     "zusatz_karten": 0,
     "siegpunkte" :-1,
-    "effekt" : 0,
+    "discard_effect" : 0,
+    "curse_effect": 0,
     "anzahl": 10}
 
 }
