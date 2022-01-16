@@ -1,4 +1,4 @@
-from Dominion.karten import karten_dict, karten 
+from Dominion.karten_definieren.karten_class import * 
 from random import shuffle
 import collections
 from itertools import chain
@@ -8,10 +8,11 @@ class action_phase():
     """ Eine action_card kann die folgenden Effekte haben : 
      Der Spieler zieht eine karte, Der Spieler bekommt Zusatzaktionen , Der Spieler bekommt Zusatzgeld"""
     
-    def __init__(self,spieler, no_turn_spieler, karten_dict):
+    def __init__(self,spieler, no_turn_spieler, karten_dict, karten_dict_class):
         self.spieler = spieler
         self.no_turn_spieler = no_turn_spieler
         self.karten_dict = karten_dict
+        self.karten_dict_class = karten_dict_class
 
 
     def get_card_type (self, card_type ): 
@@ -24,7 +25,7 @@ class action_phase():
             return True
     
     def reduce_remaining_actions(self):
-        self.spieler.number_actions= self.spieler.number_actions-1
+        self.spieler.number_actions = self.spieler.number_actions -1
 
 
     def action_phase_infos (self):
@@ -35,20 +36,6 @@ class action_phase():
         self.spieler.played_action_card_pile.append(card)
 
 
-    def get_draws_and_actions_from_action_card (self,choose_card): 
-
-        def draw_cards(self,choose_card):
-            anzahl_zusatz_karten = self.karten_dict.get(choose_card).get('zusatz_karten') 
-            self.spieler.draw_cards(anzahl_zusatz_karten)
-        
-        def add_number_actions(self,choose_card):
-            anzahl_zusatz_aktionen = self.karten_dict.get(choose_card).get('zusatz_aktionen') 
-            self.spieler.number_actions = self.spieler.number_actions+ anzahl_zusatz_aktionen 
-       
-        draw_cards(self,choose_card)
-        add_number_actions(self, choose_card)
-
-
     def remove_played_card_from_hand(self, choose_card):
         self.spieler.hand_cards.remove(choose_card)
     
@@ -57,22 +44,6 @@ class action_phase():
         discard_effect = self.karten_dict.get(choose_card).get('discard_effect') 
         if discard_effect >= 1:
             return True 
-
-    def excecute_discard_effects_on_other_player(self, choose_card) :
-        
-        def check_number_of_discard_cards(self,choose_card) : 
-            discard_num = self.karten_dict.get(choose_card).get('discard_effect') 
-            return discard_num
-
-        def force_other_player_to_discard_hand(self, choose_card):
-            self.no_turn_spieler.hand_cards.remove(choose_card)
-       
-        for i in range(check_number_of_discard_cards(self, choose_card)):
-            while True :
-                discard_card = input('Welche Karte möchtest du ablegen?')
-                if self.permitted_action_card(discard_card, self.no_turn_spieler.hand_cards) ==True: 
-                    force_other_player_to_discard_hand(self, discard_card)
-                    break 
 
     
     def stop_action_phase(self):
@@ -99,11 +70,14 @@ class action_phase():
             if self.stop_action_phase() == False:
                 choose_card = input('Welche Karte möchtest du spielen? /ansonsten tippe nein') 
                 if self.permitted_action_card(choose_card, self.spieler.hand_cards) ==True:
-                    self.get_draws_and_actions_from_action_card(choose_card)
+                    setattr(getattr(karten_dict_class,choose_card ), 'spieler', self.spieler)
+                    setattr(getattr(karten_dict_class,choose_card ), 'no_turn_spieler', self.no_turn_spieler)
+                    getattr(karten_dict_class,choose_card ).runall()
+     #               self.spieler = getattr(karten_dict_class,choose_card ).return_spieler()
+               #     self.no_turn_spieler = getattr(karten_dict_class,choose_card ).return_no_turn_spieler()
                     self.remove_played_card_from_hand(choose_card)
                     self.add_to_played_action_card_pile(choose_card)
                     self.reduce_remaining_actions()
-                    
                     if self.check_discard_effects_on_other_player(choose_card) == True:
                         print(f'{self.no_turn_spieler.name} du musst Karten ablegen {self.no_turn_spieler.hand_cards}')
                         self.excecute_discard_effects_on_other_player(choose_card)
@@ -115,4 +89,4 @@ class action_phase():
 
             else:
                 break
-         
+            

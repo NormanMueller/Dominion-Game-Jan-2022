@@ -1,6 +1,6 @@
 from random import shuffle
 import collections
-from Dominion.karten import karten_dict, karten 
+from Dominion.karten_definieren.karten_class import * 
 from Dominion.spieler import spieler
 from Dominion.phasen.aktionsphase import action_phase
 from Dominion.phasen.kaufphase import kauf_phase
@@ -17,15 +17,18 @@ class spielzug ():
                 spieler = spieler(), 
                 no_turn_spieler = spieler(),
                 spielfeld = spielfeld(), 
-                karten_dict=karten_dict ):
+                karten_dict=karten_dict ,
+                karten_dict_class=karten_dict_class 
+                ):
                 
     self.spieler= spieler
     self.no_turn_spieler = no_turn_spieler
-    self.spielfeld = spielfeld.spielfeld_attr
+    self.spielfeld = spielfeld
     self.karten_dict = karten_dict
+    self.karten_dict_class = karten_dict_class
     self.spieler_karten = self.spieler.card_deck
     self.card__drawing_phase = start_phase(self.spieler, self.karten_dict)
-    self.action_phase = action_phase(self.spieler,self.no_turn_spieler, self.karten_dict)
+    self.action_phase = action_phase(self.spieler,self.no_turn_spieler, self.karten_dict, self.karten_dict_class)
     self.kaufphase = kauf_phase(self.spieler,self.spielfeld )
     self.ablagephase = ablage_phase(self.spieler, self.karten_dict)
 

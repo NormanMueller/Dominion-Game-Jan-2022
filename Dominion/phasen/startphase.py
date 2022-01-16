@@ -1,4 +1,4 @@
-from Dominion.karten import karten_dict, karten 
+from Dominion.karten_definieren.karten_class import * 
 from random import shuffle
 import collections
 from itertools import chain

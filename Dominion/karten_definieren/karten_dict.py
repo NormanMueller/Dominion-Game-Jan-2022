@@ -158,14 +158,3 @@ karten_dict = {
     "anzahl": 10}
 
 }
-
-class karten():
-    def __init__ (self, karten= karten_dict):
-      self.karten = karten
-      self.card_names = []
-      self.karten_definieren()
-    
-    def karten_definieren(self):
-      for i in self.karten:
-        self.card_names.append(i)
-

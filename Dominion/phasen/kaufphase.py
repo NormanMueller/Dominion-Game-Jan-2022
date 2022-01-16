@@ -1,4 +1,4 @@
-from Dominion.karten import karten_dict, karten 
+from Dominion.karten_definieren.karten_class import * 
 from random import shuffle
 import collections
 from itertools import chain
@@ -56,7 +56,7 @@ class kauf_phase():
             
             self.spieler.money_counting()
             available_money = self.available_money_for_buy(self.spieler.geld)
-            print(self.buy_phase_infos(available_money))
+            print(self.buy_phase_infos(available_money), self.spieler.hand_cards)
             auswahl_karte =input("welche Karte willst du kaufen ?")    
             
             if  self.evaluate_buy_process(available_money, auswahl_karte ,self.spieler.number_buys) == True:

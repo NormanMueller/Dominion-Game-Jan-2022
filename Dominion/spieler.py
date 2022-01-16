@@ -1,4 +1,4 @@
-from Dominion.karten import karten_dict, karten 
+from Dominion.karten_definieren.karten_class import *
 from random import shuffle
 import collections
 from itertools import chain
@@ -7,9 +7,8 @@ class spieler():
   
   def __init__ (self, 
     	        card_deck = karten(['kupfer']*7 + ['anwesen']*3), 
-                karten_dict=karten_dict , 
+                karten_dict='' , 
                 name='Hans'):
-                
     self.card_deck = card_deck.card_names
     self.number_actions = 1
     self.number_buys = 1
@@ -131,3 +130,6 @@ class spieler():
     for card in player_cards:
       player_victory_points.append(get_victory_points_card(self, card))
     return sum(player_victory_points)
+
+
+
