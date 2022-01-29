@@ -114,6 +114,10 @@ class spieler:
 
     def append_card_to_discard_pile(self, new_karte) -> None:
         self.discard_pile.append(new_karte)
+   
+    def delete_card_permanently(self, new_karte):
+        self.hand_cards.remove(new_karte)
+        self.card_deck.remove(new_karte)
 
     def get_victory_points_player(self, card_deck) -> int:
         def get_victory_points_card(self, card):

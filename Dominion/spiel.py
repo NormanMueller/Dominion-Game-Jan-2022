@@ -27,6 +27,7 @@ class Spiel():
         def game_ends_three_piles_empty(self):
 
             empty_piles = 0
+           
             for i in self.spielfeld.keys():
                 anzahl = self.spielfeld.get(i).get('anzahl')
                 if anzahl == 0 :
@@ -43,6 +44,7 @@ class Spiel():
                     no_turn_player = self.spieler_2
                 else :
                     no_turn_player = self.spieler
+                
                 spielzug(  spieler, no_turn_player, self.spielfeld , self.karten_dict).start_spielzug()
                 player_points = spieler.get_victory_points_player( spieler.card_deck)
                 card_count = spieler.count_card_deck( spieler.card_deck)
