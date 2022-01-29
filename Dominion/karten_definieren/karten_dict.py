@@ -156,3 +156,4 @@ karten_dict = {
         "anzahl": 10,
     },
 }
+

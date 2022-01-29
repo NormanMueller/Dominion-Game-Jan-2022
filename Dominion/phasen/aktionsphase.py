@@ -1,16 +1,23 @@
+#from xmlrpc.client import Boolean
 from Dominion.karten_definieren.karten_class import *
 from random import shuffle
 import collections
 from itertools import chain
 from Dominion.spieler import spieler
-from typing import List, Dict
+from typing import List, Dict, Type, Generic, Any, Union
 
 
 class action_phase:
     """Eine action_card kann die folgenden Effekte haben :
     Der Spieler zieht eine karte, Der Spieler bekommt Zusatzaktionen , Der Spieler bekommt Zusatzgeld"""
 
-    def __init__(self, spieler, no_turn_spieler, karten_dict, karten_dict_class):
+    def __init__(
+        self,
+        spieler: Type[spieler],
+        no_turn_spieler: Type[spieler],
+        karten_dict: Dict[str, any],
+        karten_dict_class: Type[karten],
+    ):
         self.spieler = spieler
         self.no_turn_spieler = no_turn_spieler
         self.karten_dict = karten_dict
@@ -20,7 +27,7 @@ class action_phase:
         card_type = self.karten_dict.get(card_type).get("type")
         return card_type
 
-    def permitted_action_card(self, choose_card, hand_cards):
+    def permitted_action_card(self, choose_card: str, hand_cards):
         if choose_card in hand_cards:
             return True
 
@@ -30,19 +37,19 @@ class action_phase:
     def action_phase_infos(self):
         return f" hand_cards: {self.spieler.hand_cards} \n number_actions: {self.spieler.number_actions} \n Geld : {self.spieler.geld}"
 
-    def add_to_played_action_card_pile(self, card):
+    def add_to_played_action_card_pile(self, card: Type[karten]) ->None:
         self.spieler.played_action_card_pile.append(card)
 
-    def remove_played_card_from_hand(self, choose_card):
+    def remove_played_card_from_hand(self, choose_card: str) ->None:
         self.spieler.hand_cards.remove(choose_card)
 
-    def check_discard_effects_on_other_player(self, choose_card):
+    def check_discard_effects_on_other_player(self, choose_card) ->bool:
         discard_effect = self.karten_dict.get(choose_card).get("discard_effect")
         if discard_effect >= 1:
             return True
 
     def stop_action_phase(self):
-        def playable_action_cards(self, hand_cards):
+        def playable_action_cards(self, hand_cards) ->bool:
             aktion_cards = 0
             for hand_card in hand_cards:
                 if self.get_card_type(hand_card) == "action_card":
@@ -57,7 +64,7 @@ class action_phase:
         else:
             return False
 
-    def start_aktionsphase(self):
+    def start_aktionsphase(self) ->None:
         print(self.action_phase_infos())
         while True:
 
@@ -102,11 +109,11 @@ class action_phase:
                     self.no_turn_spieler = getattr(
                         karten_dict_class, choose_card
                     ).return_no_turn_spieler()
-                   
+
                     self.remove_played_card_from_hand(choose_card)
                     self.add_to_played_action_card_pile(choose_card)
                     print(self.action_phase_infos())
-               
+
                 elif choose_card == "":
                     break
                 elif choose_card not in self.spieler.hand_cards:

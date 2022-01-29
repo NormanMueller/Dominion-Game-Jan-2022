@@ -3,7 +3,6 @@ from random import shuffle
 import collections
 from itertools import chain
 from Dominion.spieler import spieler
-from typing import List, Dict
 
 
 class ablage_phase:

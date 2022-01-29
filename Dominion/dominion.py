@@ -4,7 +4,7 @@ from Dominion.spieler import spieler
 from Dominion.spielzug import spielzug, spielfeld
 from Dominion.spiel import Spiel
 from Dominion.karten_definieren.karten_class import *
-from typing import List, Dict
+from typing import List, Dict, Type, Generic, Any,Union
 
 
 spieler1 = spieler(

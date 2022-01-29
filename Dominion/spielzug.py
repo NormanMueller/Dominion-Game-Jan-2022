@@ -7,7 +7,7 @@ from Dominion.phasen.kaufphase import kauf_phase
 from Dominion.phasen.startphase import start_phase
 from Dominion.phasen.ablagephase import ablage_phase
 from Dominion.spielfeld import spielfeld
-from typing import List, Dict
+from typing import List, Dict, Type, Generic, Any,Union
 
 
 class spielzug:
@@ -16,11 +16,11 @@ class spielzug:
 
     def __init__(
         self,
-        spieler=spieler(),
-        no_turn_spieler=spieler(),
-        spielfeld=spielfeld(),
-        karten_dict=karten_dict,
-        karten_dict_class=karten_dict_class,
+        spieler: Type[spieler] =spieler() ,
+        no_turn_spieler: Type[spieler] = spieler(),
+        spielfeld: Type[spielfeld] = spielfeld(),
+        karten_dict: Dict[str,any] = karten_dict,
+        karten_dict_class: Type[karten]  = karten_dict_class,
     ):
 
         self.spieler = spieler
