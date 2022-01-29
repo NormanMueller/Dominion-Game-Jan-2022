@@ -23,15 +23,15 @@ class action_phase:
         self.karten_dict = karten_dict
         self.karten_dict_class = karten_dict_class
 
-    def get_card_type(self, card_type):
+    def get_card_type(self, card_type) -> str:
         card_type = self.karten_dict.get(card_type).get("type")
         return card_type
 
-    def permitted_action_card(self, choose_card: str, hand_cards):
+    def permitted_action_card(self, choose_card: str, hand_cards) -> bool:
         if choose_card in hand_cards:
             return True
 
-    def reduce_remaining_actions(self):
+    def reduce_remaining_actions(self) -> None:
         self.spieler.number_actions = self.spieler.number_actions - 1
 
     def action_phase_infos(self):
