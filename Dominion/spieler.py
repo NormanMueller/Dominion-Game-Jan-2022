@@ -2,15 +2,15 @@ from Dominion.karten_definieren.karten_class import *
 from random import shuffle
 import collections
 from itertools import chain
-from typing import List, Dict
+from typing import List, Dict, Type, Generic, Any, Union
 
 
 class spieler:
     def __init__(
         self,
-        card_deck=karten(["kupfer"] * 7 + ["anwesen"] * 3),
-        karten_dict="",
-        name="Hans",
+        card_deck: Type[karten] = karten(["kupfer"] * 7 + ["anwesen"] * 3),
+        karten_dict: Dict[str, any] = "",
+        name: str = "Hans",
     ):
         self.card_deck = card_deck.card_names
         self.number_actions = 1
