@@ -9,7 +9,7 @@ class spieler:
     def __init__(
         self,
         card_deck: Type[karten] = karten(["kupfer"] * 7 + ["anwesen"] * 3),
-        karten_dict: Dict[str, any] = "",
+        karten_dict: Dict[str, any] = {},
         name: str = "Hans",
     ):
         self.card_deck = card_deck.card_names
