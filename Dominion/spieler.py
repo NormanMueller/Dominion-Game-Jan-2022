@@ -26,18 +26,18 @@ class spieler:
         self.phase_zug = ""
         self.turn_counter = 0
 
-    def shuffle_discard_pile(self, cards):
+    def shuffle_discard_pile(self, cards) -> List[List[str]]:
         cards = [[card] for card in cards]
         shuffle(cards)
         return cards
 
-    def reset_draw_pile_to_empty(self):
+    def reset_draw_pile_to_empty(self) -> None :
         self.draw_pile = []
 
-    def reset_discard_pile_to_empty(self):
+    def reset_discard_pile_to_empty(self)-> None :
         self.discard_pile = []
 
-    def update_draw_pile(self):
+    def update_draw_pile(self)-> None :
 
         if self.discard_pile == []:
             cards = self.draw_pile
@@ -56,11 +56,11 @@ class spieler:
         for i in [[i] for i in self.draw_pile]:
             yield i
 
-    def filter_none_type_cards(self, hand_cards):
+    def filter_none_type_cards(self, hand_cards) -> List[str] :
         hand_cards = [i for i in hand_cards if i is not None]
         return hand_cards
 
-    def draw_cards(self, anz):
+    def draw_cards(self, anz) -> List[str]:
         def draw_single_card(draw_pile):
             return next(draw_pile)
 
@@ -78,26 +78,26 @@ class spieler:
                         draw_single_card(self.draw_pile_generator)[0]
                     )
 
-    def money_counting(self):
+    def money_counting(self) -> None :
         def reset_money_account(self):
             self.geld = []
 
-        def get_card_type(self, card_type):
+        def get_card_type(self, card_type: str) -> str :
             card_type = self.karten_dict.get(card_type).get("type")
             return card_type
 
-        def evaluate_money(self, card):
+        def evaluate_money(self, card) -> None:
             hand_money = self.karten_dict.get(card).get("extra_money")
             self.geld.append(hand_money)
 
-        def evaluate_hand_cards(self):
+        def evaluate_hand_cards(self) -> None:
 
             for hand_card in self.hand_cards:
                 card_type = get_card_type(self, hand_card)
                 if card_type == "money_card":
                     evaluate_money(self, hand_card)
 
-        def evaluate_action_cards(self):
+        def evaluate_action_cards(self) -> None:
             for action_card in self.played_action_card_pile:
                 evaluate_money(self, action_card)
 
@@ -105,17 +105,17 @@ class spieler:
         evaluate_hand_cards(self)
         evaluate_action_cards(self)
 
-    def count_card_deck(self, card_deck):
+    def count_card_deck(self, card_deck) :
         card_count = collections.Counter(card_deck)
         return card_count
 
-    def append_card_to_card_deck(self, new_karte):
+    def append_card_to_card_deck(self, new_karte) -> None:
         self.card_deck.append(new_karte)
 
-    def append_card_to_discard_pile(self, new_karte):
+    def append_card_to_discard_pile(self, new_karte) -> None:
         self.discard_pile.append(new_karte)
 
-    def get_victory_points_player(self, card_deck):
+    def get_victory_points_player(self, card_deck) -> int:
         def get_victory_points_card(self, card):
             victory_points = self.karten_dict.get(card).get("siegpunkte")
             return victory_points
