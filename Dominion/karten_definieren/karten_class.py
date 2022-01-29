@@ -12,7 +12,6 @@ class action_card:
     def return_no_turn_spieler(self):
         return self.no_turn_spieler_x
 
-
 # Init Schmiede
 schmiede = action_card()
 for i, j in karten_dict.get("schmiede").items():
@@ -60,6 +59,26 @@ chapel = action_card()
 for i, j in karten_dict.get("chapel").items():
     setattr(chapel, i, j)
 chapel.func1 = MethodType(delete_cards, chapel)
+
+# Init festival
+festival = action_card()
+for i, j in karten_dict.get("festival").items():
+    setattr(festival, i, j)
+festival.func1 = MethodType(get_draws_from_action_card, festival)
+festival.func2 = MethodType(get_buys_from_action_card, festival)
+festival.func3 = MethodType(get_action_from_action_card, festival)
+
+throne_room = action_card()
+for i, j in karten_dict.get("throne_room").items():
+    setattr(throne_room, i, j)
+throne_room.func1 = MethodType(play_action_card_twice, throne_room)
+
+# Init laboratory
+laboratory = action_card()
+for i, j in karten_dict.get("laboratory").items():
+    setattr(laboratory, i, j)
+laboratory.func1 = MethodType(get_draws_from_action_card, laboratory)
+laboratory.func2 = MethodType(get_action_from_action_card, laboratory)
 
 ### geldkarten
 ####
@@ -140,7 +159,10 @@ karten_dict_class = karten(
         markt,
         hexe,
         workshop,
-        chapel
+        chapel,
+        festival,
+        laboratory,
+        throne_room
     ]
 )
 

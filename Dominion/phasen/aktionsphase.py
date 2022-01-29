@@ -79,18 +79,18 @@ class action_phase:
                         self.no_turn_spieler,
                     )
 
+                   # try:
+                    getattr(karten_dict_class, choose_card).func1(karten_dict_class)
+                   # except:
+                    #    pass
+
                     try:
-                        getattr(karten_dict_class, choose_card).func1()
+                        getattr(karten_dict_class, choose_card).func2(karten_dict_class)
                     except:
                         pass
 
                     try:
-                        getattr(karten_dict_class, choose_card).func2()
-                    except:
-                        pass
-
-                    try:
-                        getattr(karten_dict_class, choose_card).func3()
+                        getattr(karten_dict_class, choose_card).func3(karten_dict_class)
                     except:
                         pass
 
