@@ -142,7 +142,7 @@ karten_dict = {
         "curse_effect": 1,
         "anzahl": 10,
     },
-    "fluch": {
+    "curse": {
         "name": "hexe",
         "type": "Punktekarte",
         "kosten": 0,

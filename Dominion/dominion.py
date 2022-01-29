@@ -4,18 +4,19 @@ from Dominion.spieler import spieler
 from Dominion.spielzug import spielzug, spielfeld
 from Dominion.spiel import Spiel
 from Dominion.karten_definieren.karten_class import *
+from typing import List, Dict
 
 
 spieler1 = spieler(
     card_deck=karten(
-        karten=[dorf, dorf, dorf, dorf, miliz, dorf, miliz, miliz, miliz, miliz]
+        karten=[markt, markt, markt, markt, hexe, markt, hexe, hexe, hexe, hexe]
     ),
     karten_dict=karten_dict,
     name="Nico",
 )
 spieler2 = spieler(
     card_deck=karten(
-        karten=[dorf, dorf, dorf, dorf, miliz, dorf, dorf, dorf, miliz, dorf]
+        karten=[markt, markt, markt, markt, hexe, markt, markt, markt, hexe, markt]
     ),
     karten_dict=karten_dict,
     name="Norman",

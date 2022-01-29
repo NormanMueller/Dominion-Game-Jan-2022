@@ -3,6 +3,7 @@ from random import shuffle
 import collections
 from itertools import chain
 from Dominion.spieler import spieler
+from typing import List, Dict
 
 
 class action_phase:
@@ -94,15 +95,18 @@ class action_phase:
                         getattr(karten_dict_class, choose_card).func3()
                     except:
                         pass
+
                     self.spieler = getattr(
                         karten_dict_class, choose_card
                     ).return_spieler()
                     self.no_turn_spieler = getattr(
                         karten_dict_class, choose_card
                     ).return_no_turn_spieler()
+                   
                     self.remove_played_card_from_hand(choose_card)
                     self.add_to_played_action_card_pile(choose_card)
                     print(self.action_phase_infos())
+               
                 elif choose_card == "":
                     break
                 elif choose_card not in self.spieler.hand_cards:

@@ -3,6 +3,7 @@ import collections
 from Dominion.karten_definieren.karten_class import * 
 from Dominion.spieler import spieler
 from Dominion.spielzug import spielzug
+from typing import List, Dict
 
 class Spiel():
     

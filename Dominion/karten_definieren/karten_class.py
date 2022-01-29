@@ -1,8 +1,7 @@
 from types import MethodType
 from Dominion.karten_definieren.karten_dict import karten_dict
 from Dominion.karten_definieren.karten_functionen import *
-import threading
-from threading import Thread
+from typing import List, Dict
 
 ### Aktionskarten
 ####
@@ -33,11 +32,17 @@ markt = action_card()
 for i, j in karten_dict.get("markt").items():
     setattr(markt, i, j)
 
+markt.func1 = MethodType(get_draws_from_action_card, markt)
+markt.func2 = MethodType(get_action_from_action_card, markt)
+
 # Init Hexe
 hexe = action_card()
 for i, j in karten_dict.get("hexe").items():
     setattr(hexe, i, j)
+hexe.func1 = MethodType(get_other_player_curse, hexe)
+hexe.func2 = MethodType(get_draws_from_action_card, hexe)
 
+get_other_player_curse
 # Init Miliz
 miliz = action_card()
 for i, j in karten_dict.get("miliz").items():
@@ -46,8 +51,6 @@ miliz.func1 = MethodType(excecute_discard_effects_on_other_player, miliz)
 
 ### geldkarten
 ####
-
-
 class treasure_card:
     pass
 
@@ -71,10 +74,8 @@ for i, j in karten_dict.get("gold").items():
 ### Punktecarten
 ####
 
-
 class victory_card:
     pass
-
 
 # Init anwesen
 anwesen = victory_card()
@@ -90,6 +91,11 @@ for i, j in karten_dict.get("herzogentum").items():
 provinz = victory_card()
 for i, j in karten_dict.get("provinz").items():
     setattr(provinz, i, j)
+
+# init curse 
+curse = victory_card()
+for i, j in karten_dict.get("curse").items():
+    setattr(curse, i, j)
 
 
 class karten:
@@ -107,7 +113,7 @@ class karten:
 
 
 karten_dict_class = karten(
-    [kupfer, silber, gold, anwesen, herzogentum, provinz, dorf, schmiede, miliz, markt]
+    [kupfer, silber, gold, anwesen, herzogentum, provinz, dorf, schmiede, miliz, markt, hexe]
 )
 
 for index in range(len(karten_dict_class.karten)):

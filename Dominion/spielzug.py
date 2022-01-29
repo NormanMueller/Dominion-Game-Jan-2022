@@ -7,6 +7,7 @@ from Dominion.phasen.kaufphase import kauf_phase
 from Dominion.phasen.startphase import start_phase
 from Dominion.phasen.ablagephase import ablage_phase
 from Dominion.spielfeld import spielfeld
+from typing import List, Dict
 
 
 class spielzug:

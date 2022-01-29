@@ -2,6 +2,7 @@ from Dominion.karten_definieren.karten_class import *
 from random import shuffle
 import collections
 from itertools import chain
+from typing import List, Dict
 
 
 class spieler:

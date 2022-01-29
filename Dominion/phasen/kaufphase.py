@@ -4,6 +4,7 @@ import collections
 from itertools import chain
 from Dominion.spieler import spieler
 from Dominion.spielfeld import spielfeld
+from typing import List, Dict
 
 
 class kauf_phase:
