@@ -1,4 +1,5 @@
 from typing import List, Dict
+from Dominion.karten_definieren.karten_dict import karten_dict
 
 def get_draws_from_action_card (self ) -> None: 
    def draw_cards(self):
@@ -6,13 +7,13 @@ def get_draws_from_action_card (self ) -> None:
    draw_cards(self)
 
 
-def get_action_from_action_card (self  -> None: 
+def get_action_from_action_card (self)  -> None: 
    def actions(self):
        zusatz_aktionen = self.zusatz_aktionen
        self.spieler_x.number_actions =   self.spieler_x.number_actions  + zusatz_aktionen
    actions(self)
 
-def force_other_player_to_discard_hand(self, choose_card):-> None: 
+def force_other_player_to_discard_hand(self, choose_card) -> None: 
     self.no_turn_spieler_x.hand_cards.remove(choose_card)
 
 def permitted_action_card (self, choose_card) -> bool: 
@@ -31,6 +32,24 @@ def excecute_discard_effects_on_other_player(self) -> None:
                 break
 
 def get_other_player_curse(self) :
-    self.no_turn_spieler_x.discard_pile.append('curse')
-    self.no_turn_spieler_x.card_deck.append('curse')
+    self.no_turn_spieler_x.append_card_to_discard_pile('curse')
+    self.no_turn_spieler_x.append_card_to_card_deck('curse')
 
+def get_card_from_supply_cost4 (self) -> None: 
+
+    while True: 
+        card = input('Choose card from supply costing up to 4')
+        if  card in karten_dict:
+            self.spieler_x.append_card_to_discard_pile(card)
+            self.spieler_x.append_card_to_card_deck(card)
+            break
+
+def delete_cards (self) -> None: 
+    for i in range(self.delete_cards):
+        while True : 
+            card = input('Choose card to delete').strip()
+            if  card in self.spieler_x.hand_cards:
+                self.spieler_x.delete_card_permanently(card)
+                break
+            elif not card :
+                break
