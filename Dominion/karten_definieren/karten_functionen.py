@@ -31,6 +31,9 @@ def permitted_action_card(self, choose_card, karten_dict_class) -> bool:
     if choose_card in self.no_turn_spieler_x.hand_cards:
         return True
 
+def permitted_action_card_player(self, choose_card, karten_dict_class) -> bool:
+    if choose_card in self.spieler_x.hand_cards:
+        return True
 
 def excecute_discard_effects_on_other_player(self, karten_dict_class) -> None:
 
@@ -47,6 +50,21 @@ def excecute_discard_effects_on_other_player(self, karten_dict_class) -> None:
 def get_other_player_curse(self, karten_dict_class):
     self.no_turn_spieler_x.append_card_to_discard_pile("curse")
     self.no_turn_spieler_x.append_card_to_card_deck("curse")
+
+
+def get_money_from_discard_copper(self, karten_dict_class):
+    if 'kupfer' in self.spieler_x.hand_cards:
+        self.spieler_x.delete_card_permanently('kupfer')
+    else :
+        print('cant play moneylander')
+
+
+def trash_treasure_get_new_cost_up_to_3 (self, karten_dict_class):
+    choose_card = input("choose card ")
+    if permitted_action_card_player(choose_card, karten_dict_class ) == True and karten_dict.get(choose_card).get('type') == 'money_card'  : 
+        self.spieler_x.delete_card_permanently(choose_card)
+        self.spieler_x.append_card_to_card_deck()
+        self.spieler_x.hand_cards.append()
 
 
 def play_action_card_twice(self, karten_dict_class):
@@ -77,6 +95,7 @@ def play_action_card_twice(self, karten_dict_class):
     self.spieler_x.hand_cards.remove(choose_card)
     self.spieler_x.append_card_to_discard_pile(choose_card)
     
+
 def play_next_action_card_free(self, karten_dict_class):
     
     self.spieler_x.draw_cards(1)

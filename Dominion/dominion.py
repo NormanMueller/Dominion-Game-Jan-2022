@@ -9,7 +9,7 @@ from typing import List, Dict, Type, Generic, Any,Union
 
 spieler1 = spieler(
     card_deck=karten(
-        karten=[throne_room, vasall, vasall, vasall, laboratory, dorf, vasall, dorf, dorf, chapel]
+        karten=[kupfer, moneylander, moneylander, kupfer, moneylander, moneylander, vasall, dorf, dorf, chapel]
     ),
     karten_dict=karten_dict,
     name="Nico",

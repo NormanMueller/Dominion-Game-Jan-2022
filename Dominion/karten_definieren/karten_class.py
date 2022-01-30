@@ -80,6 +80,12 @@ for i, j in karten_dict.get("vasall").items():
     setattr(vasall, i, j)
 vasall.func1 = MethodType(play_next_action_card_free, vasall)
 
+# Init moneylander
+moneylander = action_card()
+for i, j in karten_dict.get("moneylander").items():
+    setattr(moneylander, i, j)
+moneylander.func1 = MethodType(get_money_from_discard_copper, moneylander)
+
 # Init laboratory
 laboratory = action_card()
 for i, j in karten_dict.get("laboratory").items():
@@ -170,7 +176,8 @@ karten_dict_class = karten(
         festival,
         laboratory,
         throne_room,
-        vasall
+        vasall,
+        moneylander
     ]
 )
 
