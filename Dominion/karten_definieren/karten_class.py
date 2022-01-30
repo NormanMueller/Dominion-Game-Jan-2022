@@ -68,10 +68,17 @@ festival.func1 = MethodType(get_draws_from_action_card, festival)
 festival.func2 = MethodType(get_buys_from_action_card, festival)
 festival.func3 = MethodType(get_action_from_action_card, festival)
 
+# Init throne_room
 throne_room = action_card()
 for i, j in karten_dict.get("throne_room").items():
     setattr(throne_room, i, j)
 throne_room.func1 = MethodType(play_action_card_twice, throne_room)
+
+# Init vasall
+vasall = action_card()
+for i, j in karten_dict.get("vasall").items():
+    setattr(vasall, i, j)
+vasall.func1 = MethodType(play_next_action_card_free, vasall)
 
 # Init laboratory
 laboratory = action_card()
@@ -162,7 +169,8 @@ karten_dict_class = karten(
         chapel,
         festival,
         laboratory,
-        throne_room
+        throne_room,
+        vasall
     ]
 )
 

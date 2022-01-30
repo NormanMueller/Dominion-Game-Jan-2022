@@ -80,7 +80,36 @@ def play_action_card_twice(self, karten_dict_class):
     self.spieler_x.hand_cards.remove(choose_card)
     self.spieler_x.append_card_to_discard_pile(choose_card)
     
+def play_next_action_card_free(self, karten_dict_class):
+    
+    self.spieler_x.draw_cards(1)
+    choose_card = self.spieler_x.hand_cards[len(self.spieler_x.hand_cards)-1]
+    print(choose_card, type(choose_card))
+    
+    if karten_dict.get(choose_card).get('type') == 'action_card' :
+        print(f'es wird ausgespielt: {choose_card}')
+        setattr(
+            getattr(karten_dict_class, choose_card),
+            "spieler_x",
+            self.spieler_x,
+        )
 
+        try: 
+            getattr(karten_dict_class, choose_card).func1(karten_dict_class) 
+        except:
+            pass
+        try:
+            getattr(karten_dict_class, choose_card).func2(karten_dict_class) 
+        except:
+            pass
+        try:
+            getattr(karten_dict_class, choose_card).func3(karten_dict_class) 
+        except:
+            pass    
+        self.spieler_x.hand_cards.remove(choose_card)
+        self.spieler_x.append_card_to_discard_pile(choose_card)
+    else :
+        print(f'es nicht wird ausgespielt: {choose_card}')
 
 def get_card_from_supply_cost4(self, karten_dict_class) -> None:
 
