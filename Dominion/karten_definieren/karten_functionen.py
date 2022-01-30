@@ -6,7 +6,6 @@ from Dominion.karten_definieren.karten_dict import karten_dict
 def get_draws_from_action_card(self, karten_dict_class) -> None:
     def draw_cards(self):
         self.spieler_x.draw_cards(self.zusatz_karten)
-
     draw_cards(self)
 
 
@@ -14,15 +13,13 @@ def get_action_from_action_card(self, karten_dict_class) -> None:
     def actions(self):
         zusatz_aktionen = self.zusatz_aktionen
         self.spieler_x.number_actions = self.spieler_x.number_actions + zusatz_aktionen
-
     actions(self)
 
 
 def get_buys_from_action_card(self, karten_dict_class) -> None:
     def buys(self):
         zusatz_kaufe = self.zusatz_kaufe
-        self.spieler_x.self.number_buys = self.spieler_x.self.number_buys + number_buys
-
+        self.spieler_x.self.number_buys = self.spieler_x.self.number_buys + zusatz_kaufe
     buys(self)
 
 
@@ -110,6 +107,7 @@ def play_next_action_card_free(self, karten_dict_class):
         self.spieler_x.append_card_to_discard_pile(choose_card)
     else :
         print(f'es nicht wird ausgespielt: {choose_card}')
+
 
 def get_card_from_supply_cost4(self, karten_dict_class) -> None:
 
