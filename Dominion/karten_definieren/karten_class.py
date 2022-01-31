@@ -86,6 +86,12 @@ for i, j in karten_dict.get("moneylander").items():
     setattr(moneylander, i, j)
 moneylander.func1 = MethodType(get_money_from_discard_copper, moneylander)
 
+# Init mine
+mine = action_card()
+for i, j in karten_dict.get("mine").items():
+    setattr(mine, i, j)
+mine.func1 = MethodType(trash_treasure_get_new_cost_up_to_3, mine)
+
 # Init laboratory
 laboratory = action_card()
 for i, j in karten_dict.get("laboratory").items():
@@ -177,7 +183,8 @@ karten_dict_class = karten(
         laboratory,
         throne_room,
         vasall,
-        moneylander
+        moneylander,
+        mine
     ]
 )
 

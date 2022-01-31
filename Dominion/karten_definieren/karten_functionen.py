@@ -61,10 +61,37 @@ def get_money_from_discard_copper(self, karten_dict_class):
 
 def trash_treasure_get_new_cost_up_to_3 (self, karten_dict_class):
     choose_card = input("choose card ")
-    if permitted_action_card_player(choose_card, karten_dict_class ) == True and karten_dict.get(choose_card).get('type') == 'money_card'  : 
+    
+    if permitted_action_card_player(self, choose_card, karten_dict_class ) == True and karten_dict.get(choose_card).get('type') == 'money_card'  : 
+       
         self.spieler_x.delete_card_permanently(choose_card)
-        self.spieler_x.append_card_to_card_deck()
-        self.spieler_x.hand_cards.append()
+        cost = karten_dict.get(choose_card).get('kosten')
+        
+        if cost == 0 :
+            self.spieler_x.append_card_to_card_deck('silber')
+            self.spieler_x.hand_cards.append('silber')
+        elif cost == 3 :
+            self.spieler_x.append_card_to_card_deck('gold')
+            self.spieler_x.hand_cards.append('gold')
+
+
+def play_card (self, choose_card, karten_dict_class): 
+    try: 
+        getattr(karten_dict_class, choose_card).func1(karten_dict_class) 
+    except:
+        pass
+    try:
+        getattr(karten_dict_class, choose_card).func2(karten_dict_class) 
+    except:
+        pass
+    try:
+        getattr(karten_dict_class, choose_card).func3(karten_dict_class) 
+    except:
+        pass   
+    
+    self.spieler_x.played_action_card_pile.append(choose_card)
+    return self.spieler_x, self.no_turn_spieler_x
+
 
 
 def play_action_card_twice(self, karten_dict_class):
@@ -75,26 +102,23 @@ def play_action_card_twice(self, karten_dict_class):
         "spieler_x",
         self.spieler_x,
     )
-    
+    setattr(
+        getattr(karten_dict_class, choose_card),
+        "no_turn_spieler_x",
+        self.no_turn_spieler_x,
+        )   
+
     while True:
         if choose_card in self.spieler_x.hand_cards:
             for i in range(2):
-                try: 
-                    getattr(karten_dict_class, choose_card).func1(karten_dict_class) 
-                except:
-                    pass
-                try:
-                    getattr(karten_dict_class, choose_card).func2(karten_dict_class) 
-                except:
-                    pass
-                try:
-                    getattr(karten_dict_class, choose_card).func3(karten_dict_class) 
-                except:
-                    pass
+                self.spieler_x, self.no_turn_spieler_x  = play_card(self, choose_card , karten_dict_class)
             break
+    
     self.spieler_x.hand_cards.remove(choose_card)
     self.spieler_x.append_card_to_discard_pile(choose_card)
+     
     
+
 
 def play_next_action_card_free(self, karten_dict_class):
     
@@ -109,22 +133,17 @@ def play_next_action_card_free(self, karten_dict_class):
             "spieler_x",
             self.spieler_x,
         )
-
-        try: 
-            getattr(karten_dict_class, choose_card).func1(karten_dict_class) 
-        except:
-            pass
-        try:
-            getattr(karten_dict_class, choose_card).func2(karten_dict_class) 
-        except:
-            pass
-        try:
-            getattr(karten_dict_class, choose_card).func3(karten_dict_class) 
-        except:
-            pass    
+        setattr(
+            getattr(karten_dict_class, choose_card),
+            "no_turn_spieler_x",
+            self.no_turn_spieler_x,
+        )
+        
+        self.spieler_x, self.no_turn_spieler_x  = play_card(self, choose_card , karten_dict_class)
         self.spieler_x.hand_cards.remove(choose_card)
         self.spieler_x.append_card_to_discard_pile(choose_card)
     else :
+        self.spieler_x.hand_cards.remove(choose_card)
         print(f'es nicht wird ausgespielt: {choose_card}')
 
 
