@@ -4,10 +4,10 @@ from Dominion.karten_definieren.karten_dict import karten_dict
 
 
 def get_draws_from_action_card(self, karten_dict_class) -> None:
-    def draw_cards(self):
-        self.spieler_x.draw_cards(self.zusatz_karten)
-    draw_cards(self)
+    self.spieler_x.draw_cards(self.zusatz_karten)
 
+def other_player_gain_card (self, karten_dict_class) -> None:
+    self.no_turn_spieler_x.draw_cards(1)
 
 def get_action_from_action_card(self, karten_dict_class) -> None:
     def actions(self):

@@ -18,6 +18,13 @@ for i, j in karten_dict.get("schmiede").items():
     setattr(schmiede, i, j)
 schmiede.func1 = MethodType(get_draws_from_action_card, schmiede)
 
+# Init council_room
+council_room = action_card()
+for i, j in karten_dict.get("council_room").items():
+    setattr(council_room, i, j)
+council_room.func1 = MethodType(get_draws_from_action_card, council_room)
+council_room.func2 = MethodType(other_player_gain_card, council_room)
+
 # Init dorf
 dorf = action_card()
 for i, j in karten_dict.get("dorf").items():
@@ -184,7 +191,8 @@ karten_dict_class = karten(
         throne_room,
         vasall,
         moneylander,
-        mine
+        mine,
+        council_room
     ]
 )
 

@@ -9,14 +9,14 @@ from typing import List, Dict, Type, Generic, Any,Union
 
 spieler1 = spieler(
     card_deck=karten(
-        karten=[festival, festival, throne_room, festival, festival, throne_room, throne_room, throne_room, festival, festival]
+        karten=[festival, festival, council_room, festival, festival, council_room, council_room, council_room, festival, festival]
     ),
     karten_dict=karten_dict,
     name="Nico",
 )
 spieler2 = spieler(
     card_deck=karten(
-        karten=[laboratory, dorf, vasall, throne_room, laboratory, vasall, festival, vasall, vasall, chapel]
+        karten=[laboratory, dorf, vasall, council_room, laboratory, vasall, festival, vasall, vasall, chapel]
     ),
     karten_dict=karten_dict,
     name="Norman",
